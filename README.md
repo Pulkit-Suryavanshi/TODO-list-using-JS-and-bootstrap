@@ -19,7 +19,7 @@ ToDo Site
 * Bootstrap
 
 ## Deployment
-Open index2.html
+Open index.html
 
 ## Launch
-[ToDo](https://pulkit-suryavanshi.github.io/TODO-list-using-JS-and-bootstrap/)
+[ToDo](https://pulkit-suryavanshi.github.io/todo/)
