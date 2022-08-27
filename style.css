@@ -1,0 +1,172 @@
+/**
+             * !this is alert comment 
+             * !This is a check comment for version control
+             * ? this is question comment
+             * TODO: This is a todo comment
+             * *this is normal comment
+             * NOW ALSO RENAME TAGS EASILY
+**/
+body {
+  background-color: white;
+  transition: all 0.5s linear; /*slowly changing color*/
+  color: black;
+}
+
+.dark-mode {
+  background-color: #041c32;
+  transition: all 1s linear; /*slowly changing color*/
+  color: white;
+}
+
+.dark-mode-table {
+  color: white !important;
+  transition: all 1s linear; /*slowly changing color*/
+  background-color: black;
+}
+
+.contactClassNotToggeDarkMode {
+  color: black !important;
+}
+
+/*sliding button*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 12px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 17px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/*.containerIframe {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.48%;
+            }
+            .responsive-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            }
+            */
+/* If the screen size is 600px wide or less, hide the element */
+@media screen and (max-width: 700px) {
+  .top-heading,
+  .from-to {
+    display: none;
+  }
+  .DatesEntry {
+    width: 50% !important;
+  }
+  /* .resizeTable{
+                  max-width: 100px;
+                  min-width: 100px
+                  -webkit-transform:scale(0.7);
+                  -moz-transform:scale(0.7);
+                  -ms-transform:scale(0.7);
+                  transform:scale(0.8);
+                  transform:scaleX(0.8);
+                } */
+}
+
+a[href="#GCalandar"]:hover {
+  font-weight: bold;
+}
+
+/* body {
+                    filter: blur(3px);
+                } */
+.no-close .ui-dialog-titlebar-close {
+  display: none;
+}
+/* .ui-dialog-title{display: none;}
+                              .ui-dialog-titlebar{display: none;} */
+/*following for star*/
+input.starTask {
+  border: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  opacity: 0;
+}
+label.starTask {
+  position: relative;
+  float: right;
+  color: #c8c8c8;
+}
+label.starTask:before {
+  margin: 5px;
+  content: "\f005";
+  font-family: FontAwesome;
+  display: inline-block;
+  font-size: 1.5em;
+  color: #ccc;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+input.starTask:checked ~ label:before {
+  color: #ffc107;
+}
+
+
+
+
