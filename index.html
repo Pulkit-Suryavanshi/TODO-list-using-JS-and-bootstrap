@@ -24,18 +24,19 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <title>Pulkits TODOs List</title>
-    <script src="service-worker.js"></script>
     <script>
       if('serviceWorker' in navigator) {
       let registration;
 
       const registerServiceWorker = async () => {
-        registration = await navigator.serviceWorker.register('service-worker.js');
+        registration = await navigator.serviceWorker.register('./service-worker.js');
       };
 
       registerServiceWorker();
       }
     </script>
+    <script src="service-worker.js"></script>
+    
   </head>
 
   <body>
