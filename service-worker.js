@@ -4,10 +4,10 @@ const cacheName = 'my-cache';
 // put the static assets and routes you want to cache here
 const filesToCache = [
   '/',
-  '/index2Functionality.js',
-  '/index.html',
-  '/script.js',
-  '/style.css'
+  'index2Functionality.js',
+  'index.html',
+  'script.js',
+  'style.css'
 ];
 
 // the event handler for the activate event
