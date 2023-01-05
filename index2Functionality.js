@@ -1,5 +1,5 @@
 function getAndUpdate() {
-  console.log("Updating List...");
+  // console.log("Updating List...");
   tit = document.getElementById("title").value;
   desc = document.getElementById("description").value;
   from = document.getElementById("datepicker1").value;
@@ -60,6 +60,9 @@ function update() {
                     <td class="th" style="text-align:center;">
                         <input class="form-check-input taskDone" type="checkbox" style="position:relative;" value="" onclick="taskDone(${index})">
                     </td>
+                    <td class="th" style="text-align:center;">
+                        <button class="taskListen" type="button" style="position:relative;" onclick="taskListen(${index})">Speak</button>
+                    </td>
                     </tr>`; //checkbox for text-decoration: line-through;
   });
   //<td><button class="btn btn-sm btn-primary" onclick="edited(${index})">Edit</button></td>
@@ -74,7 +77,7 @@ add = document.getElementById("add");
 add.addEventListener("click", getAndUpdate);
 update();
 function deleted(itemIndex) {
-  console.log("Delete", itemIndex);
+  // console.log("Delete", itemIndex);
   itemJsonArrayStr = localStorage.getItem("itemsJson");
   itemJsonArray = JSON.parse(itemJsonArrayStr);
   // Delete itemIndex element from the array
@@ -84,7 +87,7 @@ function deleted(itemIndex) {
   itemJsonArrayStr = localStorage.getItem("indexToStarJson");
   indexToStar = JSON.parse(itemJsonArrayStr);
   indexToStar.splice(itemIndex - 1, 1); //removing index-1
-  console.log(indexToStar);
+  // console.log(indexToStar);
   localStorage.setItem("indexToStarJson", JSON.stringify(indexToStar));
 
   update(); //update the list
@@ -188,7 +191,7 @@ function GettodaysTasks() {
   var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   var yyyy = today.getFullYear();
   today = yyyy + "/" + mm + "/" + dd;
-  console.log(today);
+  // console.log(today);
   dateToday = new Date(today);
 
   let listfromDate = document.getElementsByClassName("fromDate");
@@ -234,10 +237,10 @@ function saveStar(starIndex) {
   }
   if (indexToStar.includes(starIndex)) {
     indexToStar = indexToStar.filter((item) => item !== starIndex);
-    console.log(indexToStar);
+    // console.log(indexToStar);
   } else {
     indexToStar.push(starIndex);
-    console.log(indexToStar);
+    // console.log(indexToStar);
   }
   //save this indexToStar in local storage
   localStorage.setItem("indexToStarJson", JSON.stringify(indexToStar));
@@ -320,4 +323,16 @@ function clearStorage() {
     //localStorage.clear(); //clearing entire storage
     update();
   }
+}
+
+function taskListen(listenIndex){
+  tableListTitles = document.getElementsByClassName("titleName");
+  tableListDesc = document.getElementsByClassName("descName");
+  titles = tableListTitles[listenIndex].innerHTML;
+  descri = tableListDesc[listenIndex].innerHTML;
+  console.log(titles,descri);
+  const text=`Item title is ${titles} , and the item description is ${descri}`;
+  const utterance=new SpeechSynthesisUtterance(text);
+  utterance.pitch=1;
+  window.speechSynthesis.speak(utterance);
 }
