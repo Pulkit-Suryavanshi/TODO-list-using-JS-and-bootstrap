@@ -22,4 +22,4 @@ ToDo Site
 Open index.html
 
 ## Launch
-[ToDo](https://pulkit-suryavanshi.github.io/TODO-list-using-JS-and-bootstrap/)
+[ToDo](https://pulkit-suryavanshi.github.io/todo/)
