@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <!--fontawesome-->
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Pulkits TODOs List</title>
+    <script>
+      if ("serviceWorker" in navigator) {
+        let registration;
+
+        const registerServiceWorker = async () => {
+          registration = await navigator.serviceWorker.register(
+            "./service-worker.js"
+          );
+        };
+
+        registerServiceWorker();
+      }
+    </script>
+    <script src="service-worker.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">ToDOs List</a>
+      <i class="fa fa-moon-o"></i>
+      <div style="padding-top: 0.7rem">
+        <label class="switch">
+          <input id="chk" type="checkbox" onclick="logClick()" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="#Contact"
+              tabindex="-1"
+              aria-disabled="true"
+              >Contact</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#items">Your Items</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#GCalandar"
+              ><span style="color: #4285f4">G</span
+              ><span style="color: #db4437">o</span
+              ><span style="color: #f4b400">o</span
+              ><span style="color: #4285f4">g</span
+              ><span style="color: #0f9d58">l</span
+              ><span style="color: #db4437">e</span>Calendar</a
+            >
+          </li>
+          <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Display Mode
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#"><button style="border-radius: 50%;" onclick="DarkToggle()"> <i class="fa fa-moon-o" aria-hidden="true"></i></button> Dark:click button</a>
+                        <a class="dropdown-item" href="#">New Mode</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">New Mode 2</a>
+                    </div>
+                </li> -->
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="container my-8">
+      <h2 class="text-center top-heading">TODOs List:</h2>
+
+      <div class="form-group" style="padding-top: 1rem">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          aria-describedby="emailHelp"
+          placeholder="Add Task here"
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >Add an item to the list</small
+        >
+      </div>
+      <!--display calendar
+            <div class="containerIframe">
+            <iframe src="https://calendar.google.com/calendar/embed?height=350&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FKolkata&showTitle=1&showPrint=0&src=ZW4uaW5kaWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%230B8043" class="responsive-iframe"  frameborder="0" scrolling="no"></iframe>
+            </div>
+            -->
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          rows="3"
+          placeholder="Add more details about the above task"
+        ></textarea>
+      </div>
+
+      <!--datepicker-->
+      <div class="form-group">
+        <p style="display: inline" id="DateFrom">
+          <strong class="from-to">From:</strong
+          ><input
+            style="width: auto"
+            class="form-control"
+            type="text"
+            id="datepicker1"
+            placeholder="From Date"
+            autocomplete="off"
+            readonly="readonly"
+          />
+        </p>
+        <br />
+        <p style="display: inline" id="DateTo">
+          <strong class="from-to">To:</strong
+          ><input
+            style="width: auto"
+            class="form-control"
+            type="text"
+            id="datepicker2"
+            placeholder="To Date"
+            autocomplete="off"
+            readonly="readonly"
+          />
+        </p>
+      </div>
+
+      <button id="add" class="btn btn-primary" title="Add to the list">
+        Add to list
+      </button>
+      <button
+        id="clear"
+        class="btn btn-primary"
+        onclick="clearStorage()"
+        title="Empty The list below"
+      >
+        Clear list
+      </button>
+      <br /><br />
+      <button
+        id="todaysTask"
+        class="btn btn-primary"
+        onclick="GettodaysTasks()"
+        title="Get Todays Tasks"
+      >
+        See Today's Task
+      </button>
+      <!--modal dialog-->
+      <div class="modalDialog" id="dialog-3" title="Todays Tasks:">
+        This popup dialog will contain today's task
+      </div>
+
+      <div>
+        <div id="items" class="my-4">
+          <h2>Your Items</h2>
+          <div style="overflow-x: auto" class="resizeTable">
+            <table id="tableOfTask" class="table">
+              <thead>
+                <tr>
+                  <th class="th" scope="col">Priority</th>
+                  <th class="th" scope="col">SNo</th>
+                  <th class="th" scope="col">Item Title</th>
+                  <th class="th" scope="col">Item Description</th>
+                  <th class="th" scope="col">From Date</th>
+                  <th class="th" scope="col">To Date</th>
+                  <th class="th" scope="col">Edit</th>
+                  <th class="th" scope="col">Delete</th>
+                  <th class="th" scope="col">Status</th>
+                  <th class="th" scope="col">Listen</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+                <tr>
+                  <td scope="row">imp</td>
+                  <td scope="row">1</td>
+                  <td>Get some Coffee</td>
+                  <td>You need coffee as you are a coder</td>
+                  <td>You need coffee as you are a coder</td>
+                  <td>You need coffee as you are a coder</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary">Delete</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-primary">Delete</button>
+                  </td>
+                  <th class="th" scope="col">Status</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!--starred task-->
+        <button
+          id="starredTask"
+          class="btn btn-primary"
+          onclick="GetStarredTask()"
+          title="Empty The list below"
+        >
+          See Starred Task
+        </button>
+        <div id="dialog-4" title="Starred Tasks:">Starred task modal popup</div>
+      </div>
+      <br />
+      <div>
+        <iframe
+          id="GCalandar"
+          src="https://calendar.google.com/calendar/embed?height=350&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FKolkata&showTitle=0&showPrint=0&showTz=0&showCalendars=0&src=ZW4uaW5kaWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%230B8043"
+          style="border-width: 0"
+          width="328"
+          height="350"
+          frameborder="0"
+          scrolling="no"
+        ></iframe>
+      </div>
+    </div>
+
+    <audio id="myAudio" style="display: none" controls preload="auto">
+      <source src="starChecked.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="container my-4 contactClassNotToggeDarkMode" id="Contact">
+      <div class="jumbotron">
+        <h3>Contact Details: <span id="time"></span></h3>
+        <p class="lead">
+          Phone: <a href="tel:+919415182799">+91-9415182799</a>
+        </p>
+        <p class="lead">
+          Email:
+          <a href="mailto:pulkitsuryavanshi34@gmail.com">Send me a mail</a>
+        </p>
+        <p class="lead">
+          Github:
+          <a href="https://github.com/Pulkit-Suryavanshi" target="_blank"
+            >Pulkit's Github</a
+          >
+        </p>
+        <p class="lead">
+          Portfolio Site:
+          <a
+            href="https://pulkit-suryavanshi.github.io/Portfolio/"
+            target="_blank"
+            >My Portfolio</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="script.js"></script>
+    <script src="index2Functionality.js"></script>
+  </body>
+</html>
